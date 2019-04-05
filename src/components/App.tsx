@@ -1,29 +1,23 @@
 import * as React from "react";
+import {Header} from "./header/Header";
+import {Footer} from "./footer/Footer";
+import {app, headerTriangle} from "../scss/index.scss";
+// import * as logo from '../img/github.svg';
 
-export interface HelloProps { compiler: string; framework: string; }
-import * as styles from "../scss/index.scss"
+let buttons = [
+    {id:1, action: 'home', text: 'Home'},
+    {id:2, action: 'projects', text: 'Projects'},
+    {id:3, action: 'contacts', text: 'Contacts'},
+];
 
-
-
-// 'HelloProps' describes the shape of props.
-// State is never set so we use the '{}' type.
-export class Hello extends React.Component<HelloProps, {}> {
+export class App extends React.Component {
     render() {
-        return <div className={styles.app}>
-            <div className={styles.header}>
-                <div className={styles.headerButton}>
-                    <div className={styles.headerButtonGlow}> </div>
-                    Home
-                </div>
-                <div className={styles.headerButton}>
-                    <div className={styles.headerButtonGlow}> </div>
-                    Projects
-                </div>
-                <div className={styles.headerButton}>
-                    <div className={styles.headerButtonGlow}> </div>
-                    Contacts
-                </div>
-            </div>
+        return <div className={app}>
+            <Header buttons={buttons}/>
+            <div className={headerTriangle}/>
+            <Footer>
+                {/*<img alt="github" src={"/src/img/github.svg"}/>*/}
+            </Footer>
         </div>;
     }
 }

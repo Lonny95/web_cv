@@ -1,28 +1,40 @@
-$main-white: #E0D3D1;
-$main-gray: #c4b8b6;
+$main-white: #f3f3f3;
+$main-gray: #c4c4c4;
 $main-red: #D64513;
 $shad-red-bright: #9E310B;
 $shad-red: #430807;
 $shad-black: #000000;
-$main-blue: #324A6C;
+$main-blue: #1C4355;
 $sup-blue: #5D8AAB;
+
+@function sqrt($r) {
+  $x0: 1;
+  $x1: $x0;
+
+  @for $i from 1 through 10 {
+    $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+    $x0: $x1;
+  }
+
+  @return $x1;
+}
 
 $header-height: 70px;
 $header-button-width: 140px;
-//$main-coral: #A44654;
-//$main-brown: #75454A;
 
 body {
-  //width: 100%;
-  //height: 100%;
   margin: 0;
   padding: 0;
 }
 
 .app {
-  background-color: $main-white;
-  width: 100%;
+  background: url("/src/img/background.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   height: 100vh;
+  display: flex;
 }
 
 .noize {
@@ -30,15 +42,24 @@ body {
 }
 
 .header {
-  $hhh: $header-height/2;
+  display: inline-block;
   background-color: $main-blue;
   height: $header-height;
-  width: 60%;
-  box-shadow: $shad-black;
+}
 
-  border-radius: 0 0 $hhh 0;
-  -moz-border-radius: 0 0 $hhh 0;
-  -webkit-border-radius: 0 0 $hhh 0;
+
+.headerTriangle {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: $header-height solid $main-blue;
+  border-right: $header-height*2 solid transparent;
+}
+
+.mainBlock {
+  height: 60vh;
+  color: $main-gray;
+  width: 60%;
 }
 
 .headerButton {
@@ -46,40 +67,41 @@ body {
   height: $header-height;
   min-width: $header-button-width;
   color: $main-gray;
-  text-align: center;
-  //vertical-align: center;
   font-size: 2em;
   margin-left: 30px;
-}
 
-.headerButtonGlow {
-  $width: 30px;
-  margin-top: 10px;
-  height: 6px;
-  border: 1.5px #202455;
-  border-radius: 3px;
-  background: $sup-blue;
-  margin-left: calc(50% - #{$width/2});
-  //margin-left: $width/2;
-  width: $width;
-  animation: glowButt 3000ms infinite;
+  $header-lighter-height: 18px;
+
+  .headerButtonGlow {
+    $height: 6px;
+    $margin-top: $header-lighter-height - $height;
+    $width: 30px;
+    margin-top: $margin-top;
+    height: $height;
+    border: 1.5px #202455;
+    border-radius: $height/2;
+    background: $sup-blue;
+    margin-left: calc(50% - #{$width/2});
+    width: $width;
+    animation: glowButt 3000ms infinite;
+  }
+
+  .headerButtonText {
+    $height: $header-height - $header-lighter-height;
+    text-align: center;
+    width: $header-button-width;
+    height: $height;
+    position: absolute;
+  }
 }
 
 .headerButton:hover {
   color: $main-white;
-
-  //background: $sup-blue;
-  //box-shadow:
-  //        inset 10px 0 20px #f0f,  /* left magenta */
-  //        inset -10px 0 20px #0ff; /* right cyan */
-  //box-shadow:
-  //        inset #{$header-button-width/2} 10px 10px $main-blue,  /* left magenta */
-  //        inset -#{$header-button-width/2} 10px 10px $main-blue; /* right cyan */
 }
 
 @keyframes glowButt {
   $glow-size: 30px;
-  $glow-blue: #39eeff;
+  $glow-blue: #23A2DE;
   0% {
     box-shadow: inset 0 10px -10px $glow-blue,
     0 0 -10px $glow-blue;
@@ -125,13 +147,14 @@ body {
   }
 }
 
-//.button-glow {
-//  animation: glowing 5000ms infinite;
-//}
-
 .footer {
-  background-color: $main-blue;
-  top: calc(100vh - #{$header-height});
-  height: $header-height;
-  width: 30%;
+  $height: 200px;
+  $width: $height * 2;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-bottom: $height solid $main-blue;
+  border-left: $width solid transparent;
 }

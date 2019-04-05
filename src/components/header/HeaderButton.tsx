@@ -1,13 +1,17 @@
 import * as React from "react";
-import * as styles from "../scss/index.scss"
+import {headerButton, headerButtonGlow, headerButtonText} from "../../scss/index.scss";
 
+export interface HeaderButtonProps {
+    id: number;
+    action: string;
+    text: string;
+}
 
-export interface ButtProps { compiler: string; framework: string; }
-// 'HelloProps' describes the shape of props.
-// State is never set so we use the '{}' type.
-export class HeaderButton extends React.Component<ButtProps, {}> {
+export class HeaderButton extends React.Component<HeaderButtonProps, {}> {
     render() {
-        return <div className={styles.app}>Hello from
+        return <div key={this.props.id} className={headerButton}>
+            <div className={headerButtonGlow}/>
+            <div className={headerButtonText}>{this.props.text}</div>
         </div>;
     }
 }

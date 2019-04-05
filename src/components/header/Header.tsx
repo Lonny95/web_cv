@@ -1,27 +1,20 @@
 import * as React from "react";
-import * as styles from "../scss/index.scss"
+import {HeaderButton, HeaderButtonProps} from "./HeaderButton";
+import {header} from "../../scss/index.scss";
 
-let nameAgeMapping = new Map();
+export interface HeaderProps {
+    buttons: HeaderButtonProps[];
+}
 
-nameAgeMapping.set("Home", "home");
-nameAgeMapping.set("Projects", "projects");
-nameAgeMapping.set("Contacts", "contacts");
-
-let headerButtsList={
-    "Home":'home',
-    "Projects":'projects',
-    "Contacts":'contacts',
-};
-
-export class Hello extends React.Component {
-    // render_buttons(buts:Map<s,d>){
-    //
-    // }
+export class Header extends React.Component<HeaderProps, {}> {
 
     render() {
-        return <div className={styles.header}>
-            <div className={styles.header}> and !
-            </div>
+        let buttons = this.props.buttons.map((button) => {
+            return <HeaderButton key={button.id} action={button.action} text={button.text} id={button.id}/>
+        });
+
+        return <div className={header}>
+            {buttons}
         </div>;
     }
 }
