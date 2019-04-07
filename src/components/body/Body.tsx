@@ -1,15 +1,21 @@
 import * as React from "react";
-import * as styles from "../../scss/index.scss"
+import {homeCenter, homeCenterHeader, homeCenterSpan, mainBlock, homeCenterPhoto} from "../../scss/index.scss";
+import photo from '../../img/photo.jpg'
 
-let buttons = [
-    {key:1, action: 'home', text: 'Home'},
-    {key:2, action: 'projects', text: 'Projects'},
-    {key:3, action: 'contacts', text: 'Contacts'},
-];
-
-export class Body extends React.Component<{}, {}> {
+export class Body extends React.Component {
     render() {
-        return <div className={styles.app}>
+        return <div className={mainBlock}>
+            <div className={homeCenter}>
+                <div className={homeCenterPhoto}>
+                    <img src={photo}/>
+                </div>
+                <div className={homeCenterHeader}>
+                    <span>Metelkin Nikita</span>
+                </div>
+                <div className={homeCenterSpan}>
+                    <span>Metelkin Nikita</span>
+                </div>
+            </div>
         </div>;
     }
 }

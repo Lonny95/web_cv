@@ -30,13 +30,13 @@ module.exports = {
                 test: /\.scss$/,
                 loaders: ["style-loader", "typings-for-css-modules-loader?modules&namedExport&sass", "sass-loader"]
             },
-
-            // {
-            //     test: /\.scss$/,
-            //     loader: 'typings-for-css-modules?modules&namedExport&sass'
-            // },
-
-            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+            {
+                test: /\.(png|jpe?g|svg)$/,
+                loader: 'file-loader',
+                options: {
+                    name: 'assets/[name].[ext]',
+                }
+            },
             {
                 test: /\.tsx?$/,
                 exclude: /node_modules/,
